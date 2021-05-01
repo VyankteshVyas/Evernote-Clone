@@ -19,7 +19,7 @@ class EditorComponent extends React.Component{
     componentDidMount(){
         this.setState({
           text:this.props.selectedNote.body,
-          title:this.props.selectedNote.title,
+          title:this.props.selectedNote.Title,
           id:this.props.selectedNote.id
         })
       }
@@ -28,6 +28,13 @@ class EditorComponent extends React.Component{
         const {classes}=this.props;
         return (
             <div className={classes.editorContainer}>
+            <BorderColorIcon className={classes.editIcon}></BorderColorIcon>
+            <input
+            className={classes.titleInput}
+            placeholder='Note title...'
+            value={this.state.title ? this.state.title : ''}
+            onChange={(e) => this.updateTitle(e.target.value)}>
+            </input>
             <ReactQuill
                 value={this.state.text}
                 onChange={this.updateBody}
@@ -37,6 +44,12 @@ class EditorComponent extends React.Component{
         );
     }
 
+    updateTitle = async (txt) => {
+        await this.setState({ title: txt });
+        this.update();
+      }
+
+      
     updateBody=async (val)=>{
         await this.setState({text:val});
         this.update();
@@ -47,6 +60,8 @@ class EditorComponent extends React.Component{
             title:this.state.title,
             body:this.state.text
         })
+        console.log(this.state.title);
+        console.log(this.state.text);
     },1500)
 
 

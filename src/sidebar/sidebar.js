@@ -78,13 +78,14 @@ class SidebarComponent extends React.Component{
         this.props.selectNote(n,i);
     }
 
-    deleteNote = () =>{
-        console.log("delete Note called");
-    }
+    deleteNote = (note) =>this.props.deleteNote(note)
 
     newNote =()=>{
-        console.log(this.state);
+        this.props.newNote(this.state.title);
+        this.setState({title:null, addingNote:false})
     }
+
+    
 }
 
 export default withStyles(styles)(SidebarComponent);
