@@ -60,7 +60,12 @@ class App extends React.Component{
       })
 
   }
-  selectNote=(note,index)=> this.setState({selectedNoteIndex:index,selectedNote:note});
+  selectNote=(note,index)=>{
+    console.log("hai select note was called",this.state.selectedNote);
+    this.setState({selectedNoteIndex:index,selectedNote:note});
+    console.log("after hai select note was called",this.state.selectedNote);
+    
+  } 
 
   noteUpdate=(id,noteObj)=>{
     firebase
